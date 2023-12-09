@@ -25,18 +25,16 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
   return (
     <html lang="en">
-      <Provider session={session}>
-        <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-          <ThemeProvider
-            disableTransitionOnChange
-            enableSystem
-            attribute="class"
-            defaultTheme="system"
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </Provider>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
+        <ThemeProvider
+          disableTransitionOnChange
+          enableSystem
+          attribute="class"
+          defaultTheme="system"
+        >
+          <Provider session={session}>{children}</Provider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
