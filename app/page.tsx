@@ -1,9 +1,11 @@
-import {Button} from "@/components/ui/button";
+import React from "react";
 
-export default function Home() {
+import LayoutContainer from "@/components/layout-container";
+
+export default function page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button>Click me</Button>
-    </main>
+    <LayoutContainer className="flex justify-center">
+      <h1 className="text-2xl font-extrabold">Hi!</h1>
+    </LayoutContainer>
   );
 }

@@ -25,7 +25,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
   return (
     <html lang="en">
-      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
+      <body className={cn("min-h-screen  bg-background font-sans antialiased", fontSans.variable)}>
         <ThemeProvider
           disableTransitionOnChange
           enableSystem
