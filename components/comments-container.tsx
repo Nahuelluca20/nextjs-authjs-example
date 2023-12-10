@@ -15,15 +15,17 @@ export default async function CommentsContainer() {
       <AddCommentForm session={session} />
 
       <div className="md:w-3/4 mx-auto">
-        {comments?.data?.map((comment, index) => (
-          <CardComment
-            key={`comment-${index}`}
-            avatarFallback={`U${index}`}
-            comment={comment.comment}
-            timeAgo={comment.timeAgo.toDateString()}
-            username={comment.username}
-          />
-        ))}
+        {comments?.data
+          ?.sort((a, b) => b.timeAgo.getTime() - a.timeAgo.getTime())
+          .map((comment, index) => (
+            <CardComment
+              key={`comment-${index}`}
+              avatarFallback={`U${index}`}
+              comment={comment.comment}
+              timeAgo={comment.timeAgo.toDateString()}
+              username={comment.username}
+            />
+          ))}
       </div>
     </div>
   );
