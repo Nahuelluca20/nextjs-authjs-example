@@ -30,7 +30,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
           disableTransitionOnChange
           enableSystem
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
         >
           <Provider session={session}>{children}</Provider>
         </ThemeProvider>
