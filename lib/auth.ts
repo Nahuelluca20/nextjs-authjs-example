@@ -13,4 +13,9 @@ export const {
       clientSecret: process.env.GITGUB_CLIENT_SECRET ?? "",
     }),
   ],
+  callbacks: {
+    authorized(params) {
+      return !!params.auth?.user;
+    },
+  },
 });

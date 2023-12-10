@@ -52,3 +52,11 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model comment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  body      String
+  authorId  String
+}

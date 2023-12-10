@@ -3,22 +3,9 @@ import Link from "next/link";
 import LayoutContainer from "@/components/layout-container";
 import {Button} from "@/components/ui/button";
 import CommentsContainer from "@/components/comments-container";
-import {auth} from "@/lib/auth";
+import SessionButton from "@/components/session-button";
 
 export default async function page(): Promise<any> {
-  // const session = await getServerSession(authOptions);
-  const session = await auth();
-
-  console.log(session);
-
-  // {session !== null ? (
-  //   <div className="w-full flex justify-between">
-  //     <h1 className="text-2xl font-extrabold">Hi {session?.user?.name}!</h1>
-  //     <LogoutButton />
-  //   </div>
-  // ) : (
-  //   <SigninLayout />
-  // )}
   return (
     <LayoutContainer>
       <main>
@@ -27,9 +14,7 @@ export default async function page(): Promise<any> {
             Hi! This is an example of NextJS 14 + AuthJS
           </Link>
           <div className="flex gap-2">
-            <Button asChild>
-              <Link href="/api/auth/signin">Sign in</Link>
-            </Button>
+            <SessionButton />
           </div>
         </header>
         <div className="my-10 text-xl font-medium max-w-[900px]">

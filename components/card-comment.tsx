@@ -1,7 +1,5 @@
 import {AvatarImage, AvatarFallback, Avatar} from "@/components/ui/avatar";
 import {CardHeader, CardContent, Card} from "@/components/ui/card";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
 
 export default function CardComment({
   username,
