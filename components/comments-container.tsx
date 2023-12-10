@@ -8,24 +8,7 @@ import CardComment from "./card-comment";
 
 export default async function CommentsContainer() {
   const session = await auth();
-  const data = await getComments();
-
-  console.log(data);
-
-  let comments = [
-    {
-      username: "username2",
-      comment: "This coments is sumbit fro username2.",
-      avatarFallback: "U2",
-      timeAgo: "45 mins",
-    },
-    {
-      username: "username3",
-      comment: "This coments is sumbit fro username3.",
-      avatarFallback: "U3",
-      timeAgo: "55 mins",
-    },
-  ];
+  const comments = await getComments();
 
   return (
     <div>
@@ -52,8 +35,14 @@ export default async function CommentsContainer() {
         </Button>
       </div>
       <div className="w-3/4 mx-auto">
-        {comments.map((comment, index) => (
-          <CardComment key={`comment-${index}`} {...comment} />
+        {comments?.data?.map((comment, index) => (
+          <CardComment
+            key={`comment-${index}`}
+            avatarFallback={`U${index}`}
+            comment={comment.comment}
+            timeAgo={comment.timeAgo.toDateString()}
+            username={comment.username}
+          />
         ))}
       </div>
     </div>
