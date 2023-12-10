@@ -30,11 +30,12 @@ export default async function page(): Promise<any> {
             </Button>
           </div>
         </header>
-        <div className="mt-10 text-xl font-medium max-w-[900px]">
+        <div className="my-10 text-xl font-medium max-w-[900px]">
           <p>
             You can access this route since the middleware is responsible for checking if the user
             is logged in to the routes that begin with {"/protected"}
           </p>
+          <p>If you are not logged in you will be able to see the comments but not post one</p>
         </div>
         <CommentsContainer />
       </main>

@@ -1,8 +1,15 @@
+import {getServerSession} from "next-auth/next";
+
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+
 import {Button} from "./ui/button";
 import {Input} from "./ui/input";
 import CardComment from "./card-comment";
 
-export default function CommentsContainer() {
+export default async function CommentsContainer() {
+  const session = await getServerSession(authOptions);
+
   let comments = [
     {
       username: "username2",
@@ -23,7 +30,19 @@ export default function CommentsContainer() {
       <h2 className="font-semibold text-2xl mb-4">Comments</h2>
       <div className="flex w-full max-w-sm items-center space-x-2 my-4 mx-auto">
         <Input className="flex-grow" placeholder="Add a comment..." type="text" />
-        <Button type="submit">Post</Button>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button disabled={session === null} type="submit">
+                Post
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>You need to be logged in</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
       <div className="w-3/4 mx-auto">
         {comments.map((comment, index) => (
