@@ -13,7 +13,7 @@ export default function CardComment({
   timeAgo: string;
 }) {
   return (
-    <Card className="mb-6 ml-8">
+    <Card className="mb-6 ">
       <CardHeader className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Avatar className="w-10 h-10 border">

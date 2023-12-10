@@ -34,7 +34,7 @@ export default async function CommentsContainer() {
           Post
         </Button>
       </div>
-      <div className="w-3/4 mx-auto">
+      <div className="md:w-3/4 mx-auto">
         {comments?.data?.map((comment, index) => (
           <CardComment
             key={`comment-${index}`}
