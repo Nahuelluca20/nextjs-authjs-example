@@ -5,7 +5,7 @@ import LayoutContainer from "@/components/layout-container";
 import NextAuthImage from "@/assets/next-auth.jpg";
 import {Button} from "@/components/ui/button";
 
-export default function page() {
+export default function Home() {
   return (
     <LayoutContainer className="flex-col gap-10 min-h-screen items-center flex flex-wrap  justify-center">
       <h1 className="text-4xl md:text-6xl max-w-[600px] text-center font-extrabold">
