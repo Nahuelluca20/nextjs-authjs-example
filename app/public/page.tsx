@@ -1,26 +1,43 @@
-import type {NextRequest} from "next/server";
-
 import {getServerSession} from "next-auth/next";
 import Link from "next/link";
 
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-import LogoutButton from "@/components/logout-button";
-import SigninLayout from "@/components/signin-layout";
 import LayoutContainer from "@/components/layout-container";
+import {Button} from "@/components/ui/button";
+import CommentsContainer from "@/components/comments-container";
 
 export default async function page(): Promise<any> {
   const session = await getServerSession(authOptions);
 
+  // {session !== null ? (
+  //   <div className="w-full flex justify-between">
+  //     <h1 className="text-2xl font-extrabold">Hi {session?.user?.name}!</h1>
+  //     <LogoutButton />
+  //   </div>
+  // ) : (
+  //   <SigninLayout />
+  // )}
   return (
     <LayoutContainer>
-      {session !== null ? (
-        <div className="w-full flex justify-between">
-          <h1 className="text-2xl font-extrabold">Hi {session?.user?.name}!</h1>
-          <LogoutButton />
+      <main>
+        <header className="w-full flex justify-between">
+          <Link className="text-xl font-bold" href={"/"}>
+            Hi! This is an example of NextJS 14 + AuthJS
+          </Link>
+          <div className="flex gap-2">
+            <Button asChild>
+              <Link href="/api/auth/signin">Sign in</Link>
+            </Button>
+          </div>
+        </header>
+        <div className="mt-10 text-xl font-medium max-w-[900px]">
+          <p>
+            You can access this route since the middleware is responsible for checking if the user
+            is logged in to the routes that begin with {"/protected"}
+          </p>
         </div>
-      ) : (
-        <SigninLayout />
-      )}
+        <CommentsContainer />
+      </main>
     </LayoutContainer>
   );
 }
