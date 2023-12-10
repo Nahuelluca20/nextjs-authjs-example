@@ -1,13 +1,15 @@
-import {getServerSession} from "next-auth/next";
 import Link from "next/link";
 
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import LayoutContainer from "@/components/layout-container";
 import {Button} from "@/components/ui/button";
 import CommentsContainer from "@/components/comments-container";
+import {auth} from "@/lib/auth";
 
 export default async function page(): Promise<any> {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
+  const session = await auth();
+
+  console.log(session);
 
   // {session !== null ? (
   //   <div className="w-full flex justify-between">

@@ -1,14 +1,12 @@
-import {getServerSession} from "next-auth/next";
-
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import {auth} from "@/lib/auth";
 
 import {Button} from "./ui/button";
 import {Input} from "./ui/input";
 import CardComment from "./card-comment";
 
 export default async function CommentsContainer() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   let comments = [
     {
@@ -29,20 +27,25 @@ export default async function CommentsContainer() {
     <div>
       <h2 className="font-semibold text-2xl mb-4">Comments</h2>
       <div className="flex w-full max-w-sm items-center space-x-2 my-4 mx-auto">
-        <Input className="flex-grow" placeholder="Add a comment..." type="text" />
-
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button disabled={session === null} type="submit">
-                Post
-              </Button>
+              <Input
+                className="flex-grow"
+                disabled={session === null}
+                placeholder="Add a comment..."
+                type="text"
+              />
             </TooltipTrigger>
             <TooltipContent>
-              <p>You need to be logged in</p>
+              <p>{session === null ? "You need to be logged in" : "Post a comment"}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
+
+        <Button disabled={session === null} type="submit">
+          Post
+        </Button>
       </div>
       <div className="w-3/4 mx-auto">
         {comments.map((comment, index) => (

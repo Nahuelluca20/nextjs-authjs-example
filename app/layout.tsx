@@ -2,13 +2,9 @@ import type {Metadata} from "next";
 
 import "./globals.css";
 import {Inter as FontSans} from "next/font/google";
-import {getServerSession} from "next-auth/next";
 
 import {ThemeProvider} from "@/components/theme-provider";
 import {cn} from "@/lib/utils";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-
-import Provider from "./context/client-provider";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -21,8 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
-  const session = await getServerSession(authOptions);
-
   return (
     <html lang="en">
       <body className={cn("min-h-screen  bg-background font-sans antialiased", fontSans.variable)}>
@@ -32,7 +26,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
           attribute="class"
           defaultTheme="light"
         >
-          <Provider session={session}>{children}</Provider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

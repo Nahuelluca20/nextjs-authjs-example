@@ -1,15 +1,5 @@
-import {withAuth} from "next-auth/middleware";
+import {auth} from "@/lib/auth";
 
-// middleware is applied to all routes, use conditionals to select
+export const middleware = auth;
 
-export default withAuth(function middleware(req) {}, {
-  callbacks: {
-    authorized: ({req, token}) => {
-      if (req.nextUrl.pathname.startsWith("/protected") && token === null) {
-        return false;
-      }
-
-      return true;
-    },
-  },
-});
+export const config = {matcher: ["/protected"]};
