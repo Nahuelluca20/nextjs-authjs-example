@@ -1,5 +1,6 @@
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import {auth} from "@/lib/auth";
+import {getComments} from "@/db/queries";
 
 import {Button} from "./ui/button";
 import {Input} from "./ui/input";
@@ -7,6 +8,9 @@ import CardComment from "./card-comment";
 
 export default async function CommentsContainer() {
   const session = await auth();
+  const data = await getComments();
+
+  console.log(data);
 
   let comments = [
     {

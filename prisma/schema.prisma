@@ -8,9 +8,10 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model comment {
-  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model comments {
   timeAgo  DateTime @default(now())
   username String
   comment  String
+  id       String   @id(map: "comment_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 }
