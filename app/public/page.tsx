@@ -1,11 +1,10 @@
 import Link from "next/link";
 
 import LayoutContainer from "@/components/layout-container";
-import {Button} from "@/components/ui/button";
 import CommentsContainer from "@/components/comments-container";
 import SessionButton from "@/components/session-button";
 
-export default async function page(): Promise<any> {
+export default async function page() {
   return (
     <LayoutContainer>
       <main>
